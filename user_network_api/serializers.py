@@ -21,13 +21,12 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ['title', 'image_or_fbx', 'created_at', 'user']
 
 
-
-class PostSerializer(serializers.ModelSerializer):
+class LikeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Post
+        model = Like
         fields = '__all__'
 
-class LikeSerializer(serializers.ModelSerializer):
+class UnlikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = '__all__'

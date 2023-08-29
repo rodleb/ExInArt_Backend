@@ -1,5 +1,6 @@
 from django.db import models
 from users_api.models import CustomUser
+from django.utils import timezone
 
 
 # Create your models here.
@@ -38,7 +39,7 @@ class Inspiration(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=510)
     image_or_fbx = models.URLField( blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField( default=timezone.now)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=CustomUser.objects.first().id)
 
     def __str__(self):
@@ -49,6 +50,9 @@ class Like(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'post')
 
 class Comment(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

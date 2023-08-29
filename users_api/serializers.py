@@ -3,6 +3,8 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from datetime import datetime
 from user_network_api.models import Inspiration
+from django.contrib.auth import authenticate
+
 
 
 
@@ -57,7 +59,6 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
 
 #Login Serializer
-
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=150)
     password = serializers.CharField(write_only=True, style={'input_type': 'password'})
@@ -67,7 +68,7 @@ class UserLoginSerializer(serializers.Serializer):
         password = attrs.get('password', None)
 
         if username and password:
-            user = User.objects.filter(username=username).first()
+            user = authenticate(username=username, password=password)
 
             if user:
                 if not user.is_active:
@@ -87,7 +88,6 @@ class UserLoginSerializer(serializers.Serializer):
 
         attrs['user'] = user
         return attrs
-
 
 # User verification serializer
 class UserVerificationSerializer(serializers.Serializer):

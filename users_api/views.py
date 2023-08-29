@@ -83,7 +83,7 @@ def register_user(request):
 
 
 @swagger_auto_schema(
-    method='post',
+    method='POST',
     request_body=openapi.Schema(
         type=openapi.TYPE_OBJECT,
         properties={
@@ -101,15 +101,15 @@ def user_login(request):
     password = request.data.get('password')
 
     if username and password:
-        user = authenticate(username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
-        if user:
+        if user is not None:
             if not user.is_active:
                 return Response({"message": "User account is not active."}, status=400)
-            
+
             refresh = RefreshToken.for_user(user)
             access_token = str(refresh.access_token)
-            
+
             user.last_login = timezone.now()
             user.save()
 
@@ -118,7 +118,7 @@ def user_login(request):
                 "access_token": access_token,
                 "refresh_token": str(refresh)
             }
-            
+
             return Response(response_data)
         else:
             return Response({"message": "Unable to log in with provided credentials."}, status=400)

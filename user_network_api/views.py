@@ -18,6 +18,8 @@ from .models import Post
 from django.contrib.auth import get_user_model
 from .serializers import LikeSerializer, CommentSerializer
 from .models import Post, Like, Comment
+from rest_framework.pagination import PageNumberPagination
+
 
 
 
@@ -171,9 +173,10 @@ def user_posts_list(request, user_id):
     responses={201: 'Post loved successfully'}
 )
 @api_view(['POST'])
+@authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated, IsVerifiedUser])
-@permission_classes([IsAuthenticated])
-def love_post(request, post_id):
+def like_post(request, post_id):
+
     """
     Love a post.
     
@@ -182,31 +185,77 @@ def love_post(request, post_id):
     Returns:
         Response: A message indicating whether the post was loved successfully.
     """
-    post = Post.objects.get(pk=post_id)
-    like, created = Like.objects.get_or_create(user=request.user, post=post)
+    try:
+        post = Post.objects.get(pk=post_id)
+    except Post.DoesNotExist:
+        return Response({'message': 'Post not found.'}, status=status.HTTP_404_NOT_FOUND)
+    
+    user = request.user
+    try:
+        like, created = Like.objects.get_or_create(user=user, post=post)
+    except Exception as e:
+        print("Error:", e)
     if created:
         return Response({'message': 'Post loved successfully.'}, status=status.HTTP_201_CREATED)
     return Response({'message': 'You already loved this post.'}, status=status.HTTP_400_BAD_REQUEST)
 
+#create an unlike view
 @swagger_auto_schema(
-    method='GET',
-    responses={200: LikeSerializer(many=True)}
+    method='POST',
+    manual_parameters=[
+        openapi.Parameter(
+            name='Authorization',
+            in_=openapi.IN_HEADER,
+            type=openapi.TYPE_STRING,
+            required=True,
+        )
+    ],
+    responses={200: 'Post unloved successfully'}
 )
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@api_view(['POST'])
+@authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated, IsVerifiedUser])
-def get_likes_for_post(request, post_id):
+def unlike_post(request, post_id):
     """
-    Get likes for a post.
+    Unlove a post.
     
-    Provide the post_id to retrieve likes for a post.
+    Provide the post_id to unlove a post.
 
     Returns:
-        Response: List of likes for the post.
+        Response: A message indicating whether the post was unloved successfully.
     """
-    likes = Like.objects.filter(post__id=post_id)
-    serializer = LikeSerializer(likes, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    try:
+        post = Post.objects.get(pk=post_id)
+    except Post.DoesNotExist:
+        return Response({'message': 'Post not found.'}, status=status.HTTP_404_NOT_FOUND)
+    
+    user = request.user
+    try:
+        Like.objects.get(user=user, post=post).delete()
+    except Like.DoesNotExist:
+        return Response({'message': 'You have not loved this post.'}, status=status.HTTP_400_BAD_REQUEST)
+    return Response({'message': 'Post unloved successfully.'}, status=status.HTTP_200_OK)
+
+
+
+@swagger_auto_schema(
+    method='get',
+    manual_parameters=[
+        openapi.Parameter(
+            name='Authorization',
+            in_=openapi.IN_HEADER,
+            type=openapi.TYPE_STRING,
+            required=True,
+        )
+    ],
+    responses={200: 'Post unloved successfully'}
+)
+@api_view(['GET'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated, IsVerifiedUser])
+def get_likes_count_of_post(request, post_id):
+    likes_count = Like.objects.filter(post__id=post_id).count()
+    return Response({"likes_count": likes_count}, status=status.HTTP_200_OK)
 
 @swagger_auto_schema(
     method='POST',
@@ -223,29 +272,34 @@ def get_likes_for_post(request, post_id):
     responses={201: CommentSerializer()}
 )
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated, IsVerifiedUser])
-def engage_post(request, post_id):
-    """
-    Engage with a post.
-    
-    Provide the post_id and text in the request body to engage with a post.
+def comment_post(request, post_id):
+    try:
+        post = Post.objects.get(pk=post_id)
+    except Post.DoesNotExist:
+        return Response({'message': 'Post not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-    Returns:
-        Response: The created comment.
-    """
-    post = Post.objects.get(pk=post_id)
     text = request.data.get('text')
     comment = Comment.objects.create(user=request.user, post=post, text=text)
     serializer = CommentSerializer(comment)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+
 @swagger_auto_schema(
-    method='GET',
-    responses={200: {'comment_count': 'Number of comments'}}
+    method='get',
+    manual_parameters=[
+        openapi.Parameter(
+            name='Authorization',
+            in_=openapi.IN_HEADER,
+            type=openapi.TYPE_STRING,
+            required=True,
+        )
+    ],
+    responses={200: 'Post unloved successfully'}
 )
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated, IsVerifiedUser])
 def get_comment_count_for_post(request, post_id):
     """
@@ -259,12 +313,21 @@ def get_comment_count_for_post(request, post_id):
     comment_count = Comment.objects.filter(post__id=post_id).count()
     return Response({'comment_count': comment_count}, status=status.HTTP_200_OK)
 
+
 @swagger_auto_schema(
-    method='GET',
-    responses={200: {'total_likes': 'Total number of likes for the user'}}
+    method='get',
+    manual_parameters=[
+        openapi.Parameter(
+            name='Authorization',
+            in_=openapi.IN_HEADER,
+            type=openapi.TYPE_STRING,
+            required=True,
+        )
+    ],
+    responses={200: 'Post unloved successfully'}
 )
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated, IsVerifiedUser])
 def get_total_likes_for_user(request):
     """
@@ -276,12 +339,21 @@ def get_total_likes_for_user(request):
     total_likes = Like.objects.filter(user=request.user).count()
     return Response({'total_likes': total_likes}, status=status.HTTP_200_OK)
 
+
 @swagger_auto_schema(
-    method='GET',
-    responses={200: {'total_comments': 'Total number of comments for the user'}}
+    method='get',
+    manual_parameters=[
+        openapi.Parameter(
+            name='Authorization',
+            in_=openapi.IN_HEADER,
+            type=openapi.TYPE_STRING,
+            required=True,
+        )
+    ],
+    responses={200: 'Post unloved successfully'}
 )
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated, IsVerifiedUser])
 def get_total_comments_for_user(request):
     """
@@ -292,3 +364,39 @@ def get_total_comments_for_user(request):
     """
     total_comments = Comment.objects.filter(user=request.user).count()
     return Response({'total_comments': total_comments}, status=status.HTTP_200_OK)
+
+
+
+@swagger_auto_schema(
+    method='get',
+    manual_parameters=[
+        openapi.Parameter(
+            name='Authorization',
+            in_=openapi.IN_HEADER,
+            type=openapi.TYPE_STRING,
+            required=True,
+        )
+    ],
+    responses={200: 'Post unloved successfully'}
+)
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated, IsVerifiedUser])
+@api_view(['GET'])
+def list_all_posts(request):
+    """
+    List all posts with pagination.
+
+    Returns:
+        Response: Paginated list of posts.
+    """
+    paginator = CustomPagination()
+    posts = Post.objects.all()
+    paginated_posts = paginator.paginate_queryset(posts, request)
+    serializer = PostSerializer(paginated_posts, many=True)
+    return paginator.get_paginated_response(serializer.data)
+
+
+class CustomPagination(PageNumberPagination):
+    page_size = 10  # Adjust the page size as needed
+    page_size_query_param = 'page_size'
+    max_page_size = 100
