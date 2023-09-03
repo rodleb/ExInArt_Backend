@@ -24,7 +24,7 @@ import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "exinart-13556-924783e499ba.json"
 cred = credentials.Certificate("exinart-13556-924783e499ba.json")
 firebase_admin.initialize_app(cred, {'storageBucket': 'gs://exinart-13556.appspot.com'})
-
+fire_base_url = 'exinart-13556.appspot.com'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

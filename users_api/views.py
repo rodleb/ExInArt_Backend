@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import UserRegistrationSerializer, UserProfileUpdateSerializer, PublicUserProfileSerializer, UpdateProfilePictureSerializer, PrivateUserProfileSerializer, ForgotPasswordSerializer, ChangePasswordSerializer
 import secrets
-from datetime import datetime
+import datetime
 from .models import CustomUser as User  # Import your User model
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -19,9 +19,7 @@ from rest_framework.decorators import parser_classes
 import os
 import uuid
 from firebase_admin import storage
-from google.cloud import storage
 from django.core.exceptions import ObjectDoesNotExist
-import datetime  # Import the datetime module
 from django.urls import reverse
 from xnart.user_permissions import IsVerifiedUser
 from rest_framework.permissions import AllowAny
@@ -139,8 +137,6 @@ def user_login(request):
     ],
     request_body=openapi.Schema(
         type=openapi.TYPE_OBJECT,
-        #upload image file
-        
         properties={
           #        fields = [ 'first_name', 'last_name', 'biography', 'profile_picture']
             'first_name': openapi.Schema(type=openapi.TYPE_STRING),
@@ -230,11 +226,14 @@ def update_profile_picture(request):
             bucket = storage_client.bucket('exinart-13556.appspot.com')  # Replace with your actual bucket name
             blob = bucket.blob(f"profile_pictures/{new_filename}")  # Update the path
             blob.upload_from_string(image_file.read(), content_type=image_file.content_type)
+            
+            expiration = datetime.timedelta(days=7)
+            print("Expiration:", expiration)  # Add this line
 
             # Get the Direct Google Cloud Storage URL
             direct_url = blob.generate_signed_url(
                 version="v4",
-                expiration=datetime.timedelta(minutes=15),  # Set the expiration time as needed
+                expiration=expiration,  # Set the expiration time as needed
                 method="GET",
             )
 
