@@ -20,7 +20,6 @@ from rest_framework.schemas import get_schema_view
 from rest_framework.permissions import AllowAny
 from drf_yasg.views import get_schema_view
 # from .views import protected_view
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from django.conf.urls import url
 from rest_framework_swagger.views import get_swagger_view
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
