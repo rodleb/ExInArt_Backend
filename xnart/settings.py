@@ -67,9 +67,11 @@ SWAGGER_SETTINGS = {
     'DEFAULT_INFO': 'your_project.urls.swagger_info',
 }
 
-CORS_ALLOW_ALL_ORIGINS = True  # Allow requests from any origin
+CORS_ALLOWED_ORIGINS = [
+    "https://exinart.azurewebsites.net",
+]
 
-ALLOWED_HOSTS = ['*','192.168.0.2', '127.0.0.1','172.16.6.67']
+ALLOWED_HOSTS = ['192.168.0.2', '127.0.0.1','https://exinart.azurewebsites.net']
 
 
 MIDDLEWARE = [
