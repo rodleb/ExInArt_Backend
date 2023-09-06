@@ -19,6 +19,12 @@ import firebase_admin
 from firebase_admin import credentials
 import os
 
+ALLOWED_HOSTS = ['192.168.0.2',
+                 '127.0.0.1',
+                 'https://exinart.azurewebsites.net',
+                 "http://exinart.azurewebsites.net",
+                 "exinart.azurewebsites.net",
+                ]
 
 #FireBase Server
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "exinart-13556-924783e499ba.json"
@@ -66,14 +72,11 @@ SWAGGER_SETTINGS = {
 
 CORS_ALLOWED_ORIGINS = [
     "https://exinart.azurewebsites.net",
-    "http://exinart.azurewebsites.net"
+    "http://exinart.azurewebsites.net",
+    "exinart.azurewebsites.net",
 ]
 
-ALLOWED_HOSTS = ['192.168.0.2',
-                 '127.0.0.1',
-                 'https://exinart.azurewebsites.net',
-                 "http://exinart.azurewebsites.net"
-                ]
+
 
 
 MIDDLEWARE = [
