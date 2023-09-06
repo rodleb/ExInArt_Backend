@@ -41,9 +41,6 @@ SECRET_KEY = 'django-insecure-vpu92ign&)he=8d#_k6i2ntiz_yohi-&w+3nv#(4w#n$wmo+wn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -69,9 +66,14 @@ SWAGGER_SETTINGS = {
 
 CORS_ALLOWED_ORIGINS = [
     "https://exinart.azurewebsites.net",
+    "http://exinart.azurewebsites.net"
 ]
 
-ALLOWED_HOSTS = ['192.168.0.2', '127.0.0.1','https://exinart.azurewebsites.net']
+ALLOWED_HOSTS = ['192.168.0.2',
+                 '127.0.0.1',
+                 'https://exinart.azurewebsites.net',
+                 "http://exinart.azurewebsites.net"
+                ]
 
 
 MIDDLEWARE = [
