@@ -87,3 +87,4 @@ uritemplate==4.1.1
 urllib3==1.26.12
 virtualenv==20.15.1
 virtualenv-clone==0.5.7
+whitenoise==6.5.0
