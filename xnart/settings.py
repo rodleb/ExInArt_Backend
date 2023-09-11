@@ -53,17 +53,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_framework_swagger',
-    'drf_yasg',
     'users_api',
     'corsheaders',
     'user_network_api',
+    'drf_yasg',
     
 ]
-
-SWAGGER_SETTINGS = {
-    'DEFAULT_INFO': 'your_project.urls.swagger_info',
-}
 
 ALLOWED_HOSTS = ['192.168.0.2',
                  '127.0.0.1',

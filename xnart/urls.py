@@ -33,7 +33,7 @@ schema_view = get_schema_view(
     openapi.Info(
         title="ExInARt API",
         default_version='v1',
-        description="Your API description",
+        description="Some Description",
         terms_of_service="https://www.yourapp.com/terms/",
         contact=openapi.Contact(email="contact@yourapp.com"),
         license=openapi.License(name="Your License"),
