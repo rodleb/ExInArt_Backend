@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from django.conf import settings
 import datetime
+from datetime import timedelta
 
 import firebase_admin
 from firebase_admin import credentials
@@ -233,4 +234,15 @@ LOGGING = {
             'propagate': False,
         }
     }
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Set the token expiration time as needed
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),  # Refresh token lifetime
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,  # You can set this to a public key if needed
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID': 'id',
+    'ALWAYS_ALLOW_REFRESH': False,
 }
