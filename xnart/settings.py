@@ -20,11 +20,11 @@ from firebase_admin import credentials
 import os
 
 
-
-#FireBase Server
+# FireBase Server
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "exinart-13556-924783e499ba.json"
 cred = credentials.Certificate("exinart-13556-924783e499ba.json")
-firebase_admin.initialize_app(cred, {'storageBucket': 'gs://exinart-13556.appspot.com'})
+firebase_admin.initialize_app(
+    cred, {'storageBucket': 'gs://exinart-13556.appspot.com'})
 fire_base_url = 'exinart-13556.appspot.com'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -60,20 +60,18 @@ INSTALLED_APPS = [
     'corsheaders',
     'user_network_api',
     'drf_yasg',
-    
+
 ]
 
 ALLOWED_HOSTS = ['192.168.0.2',
                  '127.0.0.1',
                  "exinart.azurewebsites.net",
-                ]
+                 ]
 
 CORS_ALLOWED_ORIGINS = [
     "https://exinart.azurewebsites.net",
     "http://exinart.azurewebsites.net",
 ]
-
-
 
 
 MIDDLEWARE = [
@@ -90,13 +88,12 @@ MIDDLEWARE = [
 ]
 
 
-
 ROOT_URLCONF = 'xnart.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -158,9 +155,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -214,6 +208,30 @@ JWT_AUTH = {
     'JWT_SECRET_KEY': SECRET_KEY,
     'JWT_ALGORITHM': 'HS256',
     'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),  # Set your desired expiration time
+    # Set your desired expiration time
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'logfile': {
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': 'D:\home\site\wwwroot\myapp.log'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['logfile'],
+            'level': 'ERROR',
+            'propagate': False,
+        }
+    }
 }
