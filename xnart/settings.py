@@ -224,7 +224,7 @@ LOGGING = {
     'handlers': {
         'logfile': {
             'class': 'logging.handlers.WatchedFileHandler',
-            'filename': 'D:\home\site\wwwroot\myapp.log'
+            'filename': os.path.join(BASE_DIR, 'xnart.log'),
         }
     },
     'loggers': {
