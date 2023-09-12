@@ -32,7 +32,23 @@ import datetime
 from firebase_admin import storage
 from rest_framework import status
 from rest_framework.response import Response
-from django.conf import settings
+from rest_framework import status
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import status
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.response import Response
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 
@@ -133,8 +149,11 @@ def user_login(request):
             user_id = user.id
             username = user.username
             profile_picture = user.profile_picture
-
-            response_data = {
+            is_verified = user.is_verified
+            
+            ##if user is verified then return true else return verification link and false
+            if is_verified:
+                response_data = {
                 "message": "You have successfully logged in.",
                 "access_token": access_token,
                 "refresh_token": str(refresh),
@@ -144,8 +163,23 @@ def user_login(request):
                 "user_id": user_id,
                 "username": username,
                 "profile_picture": profile_picture,
-
-            }
+                "is_verified": is_verified,
+                }
+            else:
+                verification_link = generate_verification_link(request, user)
+                response_data = {
+                "message": "You have successfully logged in.",
+                "access_token": access_token,
+                "refresh_token": str(refresh),
+                "user_email": user_email,
+                "first_name": first_name,
+                "last_name": last_name,
+                "user_id": user_id,
+                "username": username,
+                "profile_picture": profile_picture,
+                "is_verified": is_verified,
+                "verification_link": verification_link,
+                }
 
             return Response(response_data)
         else:
@@ -367,29 +401,29 @@ def resend_verification_code(request):
 #logout user
 @swagger_auto_schema(
     method='post',
-    
     manual_parameters=[
         openapi.Parameter(
             name='Authorization',
             in_=openapi.IN_HEADER,
             type=openapi.TYPE_STRING,
             required=True,
-
         )
     ],
-    responses={200: 'Successful logout'}
+    responses={200: 'Successful logout', 400: 'Bad Request'}
 )
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 def user_logout(request):
     try:
-        refresh_token = request.data["refresh_token"]
+        refresh_token = request.data['refresh_token']
         token = RefreshToken(refresh_token)
         token.blacklist()
-        return Response(status=status.HTTP_205_RESET_CONTENT)
+        return Response({'message': 'You have been logged out successfully.'}, status=status.HTTP_200_OK)
     except Exception as e:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        print(e)
+        return Response({'error': 'Bad Request'}, status=status.HTTP_400_BAD_REQUEST)
+
     
 
 #forget password
