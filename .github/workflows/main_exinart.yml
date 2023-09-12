@@ -23,9 +23,9 @@ jobs:
           python-version: '3.11'
 
       - name: Create and start virtual environment
-        run: | 
-          python -m venv django_env
-          source django_env/bin/activate
+        run: |
+          python -m venv venv
+          source venv/bin/activate
       
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -38,7 +38,7 @@ jobs:
           name: python-app
           path: |
             . 
-            !django_env/
+            !venv/
 
   deploy:
     runs-on: ubuntu-latest
@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'ExInArt'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F9253A4A1FCE421BA50E24410003CC4A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5C909AD2F1FE47D7B388030BEDAAA231 }}
