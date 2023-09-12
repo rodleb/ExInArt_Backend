@@ -26,6 +26,14 @@ from rest_framework.permissions import AllowAny
 from django.core.mail import send_mail
 import random
 import string
+import os
+import uuid
+import datetime
+from firebase_admin import storage
+from rest_framework import status
+from rest_framework.response import Response
+from django.conf import settings
+
 
 
 
@@ -64,15 +72,23 @@ def register_user(request):
             # Generate the verification link
             verification_link = generate_verification_link(request, user)
 
-            # get user email
+            
             user_email = user.email
+            first_name = user.first_name
+            last_name = user.last_name
+            user_id = user.id
+            username = user.username
 
             response_data = {
                 'message': 'User created successfully.',
                 'access_token': str(access),
                 'refresh_token': str(refresh),
                 'verification_link': verification_link,
-                'user_email': user_email
+                'user_email': user_email,
+                'first_name': first_name,
+                'last_name': last_name,
+                'user_id': user_id,
+                'username': username,
             }
             return Response(response_data, status=status.HTTP_201_CREATED)
         else:
@@ -111,10 +127,24 @@ def user_login(request):
             user.last_login = timezone.now()
             user.save()
 
+            user_email = user.email
+            first_name = user.first_name
+            last_name = user.last_name
+            user_id = user.id
+            username = user.username
+            profile_picture = user.profile_picture
+
             response_data = {
                 "message": "You have successfully logged in.",
                 "access_token": access_token,
-                "refresh_token": str(refresh)
+                "refresh_token": str(refresh),
+                "user_email": user_email,
+                "first_name": first_name,
+                "last_name": last_name,
+                "user_id": user_id,
+                "username": username,
+                "profile_picture": profile_picture,
+
             }
 
             return Response(response_data)
@@ -202,15 +232,6 @@ def get_private_user_profile(request, *args, **kwargs):
 @permission_classes([IsAuthenticated, IsVerifiedUser])
 @parser_classes([MultiPartParser])
 def update_profile_picture(request):
-    """
-    Update profile picture.
-
-    Upload a new profile picture by providing a valid image file in the 'profile_picture' field.
-
-    Note: In Swagger, you won't be able to directly interact with a file input field.
-    Please use tools like cURL, Postman, or a client library to perform file uploads.
-    """
-
     if request.method == 'POST':
         serializer = UpdateProfilePictureSerializer(request.user, data=request.data)
         if serializer.is_valid():
@@ -219,21 +240,21 @@ def update_profile_picture(request):
             # Generate a unique filename using UUID
             new_filename = f"{uuid.uuid4()}{os.path.splitext(image_file.name)[-1]}"
 
-            # Initialize Firebase Storage client
-            storage_client = storage.Client()
+            # Initialize Firebase Admin SDK (assuming you've already initialized it)
+            # and get a reference to the default Firebase Storage bucket
+            bucket = storage.bucket('exinart-13556.appspot.com')  # This will use the default bucket configured in Firebase Admin
 
             # Upload the image to Firebase Storage
-            bucket = storage_client.bucket('exinart-13556.appspot.com')  # Replace with your actual bucket name
-            blob = bucket.blob(f"profile_pictures/{new_filename}")  # Update the path
+            blob = bucket.blob(f"profile_pictures/{new_filename}")
             blob.upload_from_string(image_file.read(), content_type=image_file.content_type)
             
             expiration = datetime.timedelta(days=7)
-            print("Expiration:", expiration)  # Add this line
+            print("Expiration:", expiration)
 
             # Get the Direct Google Cloud Storage URL
             direct_url = blob.generate_signed_url(
                 version="v4",
-                expiration=expiration,  # Set the expiration time as needed
+                expiration=expiration,
                 method="GET",
             )
 
@@ -243,7 +264,6 @@ def update_profile_picture(request):
 
             return Response({'message': 'Profile picture updated successfully.'}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
 
 @swagger_auto_schema(
     method='get',
