@@ -5,28 +5,6 @@ from django.utils import timezone
 
 # Create your models here.
 
-# class Upload(models.Model):
-#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-#     title = models.CharField(max_length=200)
-#     image = models.ImageField(upload_to='uploads/')
-#     fbx_file = models.FileField(upload_to='fbx_files/', blank=True, null=True)
-#     uploaded_at = models.DateTimeField(auto_now_add=True)
-#     # Other fields you might want to add
-
-#     def __str__(self):
-#         return self.title
-
-# class Exhibit(models.Model):
-#     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-#     title = models.CharField(max_length=200)
-#     description = models.TextField()
-#     image = models.ImageField(upload_to='exhibit_images/')
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     # Other fields you might want to add
-
-#     def __str__(self):
-#         return self.title
-
 class Inspiration(models.Model):
     follower = models.ForeignKey(CustomUser, related_name='followers', on_delete=models.CASCADE)
     followed = models.ForeignKey(CustomUser, related_name='followed', on_delete=models.CASCADE)

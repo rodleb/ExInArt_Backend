@@ -1,6 +1,7 @@
 # serializers.py
 from rest_framework import serializers
 from .models import Inspiration, Post, Like, Comment
+from users_api.serializers import CustomUserSerializer
 
 class InspirationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,13 +19,15 @@ class InspirationSerializer(serializers.ModelSerializer):
 from .models import Inspiration, Post, Like, Comment
 
 class PostSerializer(serializers.ModelSerializer):
+    user = CustomUserSerializer(read_only=True)
+
     is_liked = serializers.SerializerMethodField()
     is_commented = serializers.SerializerMethodField()
     is_followed = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = ['title', 'image_or_fbx', 'created_at', 'user', 'is_liked', 'is_commented', 'is_followed']
+        fields = ['id','title', 'image_or_fbx', 'created_at', 'user', 'is_liked', 'is_commented', 'is_followed']
 
     def get_is_liked(self, obj):
         user = self.context.get("user")

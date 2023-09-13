@@ -408,7 +408,10 @@ def list_all_posts(request):
     context = paginator.paginate_queryset(posts, request)
     posts_data = []
     for post in context:
-        post_serializer = PostSerializer(post, context={'user': request.user}).data
+        post_serializer = PostSerializer(
+            post,
+            context={'user': request.user}
+        ).data
         post_serializer['likes_count'] = post.likes_count
         post_serializer['comments_count'] = post.comments_count
         # handle None case
