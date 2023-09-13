@@ -12,7 +12,7 @@ from rest_framework.parsers import MultiPartParser
 from google.cloud import storage
 import os
 import uuid
-import datetime 
+import datetime
 from users_api.models import CustomUser
 from .models import Post
 from django.contrib.auth import get_user_model
@@ -21,9 +21,7 @@ from .models import Post, Like, Comment
 from rest_framework.pagination import PageNumberPagination
 from django.utils import timezone
 from xnart.settings import fire_base_url
-
-
-
+from django.db.models import Count, Subquery, OuterRef
 
 
 @swagger_auto_schema(
@@ -46,11 +44,13 @@ def follow_user(request, user_id):
     if user_id == request.user.id:
         return Response({'message': 'You cannot follow yourself.'}, status=status.HTTP_400_BAD_REQUEST)
 
-    serializer = InspirationSerializer(data={'followed': user_id}, context={'request': request})
+    serializer = InspirationSerializer(
+        data={'followed': user_id}, context={'request': request})
     if serializer.is_valid():
         serializer.save()
         return Response({'message': 'You are now following this user.'}, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @swagger_auto_schema(
     method='post',
@@ -72,9 +72,10 @@ def unfollow_user(request, user_id):
     if not Inspiration.objects.filter(follower=request.user, followed_id=user_id).exists():
         return Response({'message': 'You are not following this user.'}, status=status.HTTP_400_BAD_REQUEST)
 
-    Inspiration.objects.filter(follower=request.user, followed_id=user_id).delete()
+    Inspiration.objects.filter(
+        follower=request.user, followed_id=user_id).delete()
     return Response({'message': 'You have unfollowed this user.'}, status=status.HTTP_200_OK)
-    
+
 
 @swagger_auto_schema(
     method='get',
@@ -87,7 +88,7 @@ def unfollow_user(request, user_id):
             description='Bearer <access_token>'
         )
     ],
-     responses={200: 'Post list'}
+    responses={200: 'Post list'}
 )
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -100,7 +101,6 @@ def user_posts_list(request, user_id):
         return Response(serializer.data, status=status.HTTP_200_OK)
     except CustomUser.DoesNotExist:
         return Response({'message': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
-    
 
 
 @swagger_auto_schema(
@@ -120,10 +120,9 @@ def user_posts_list(request, user_id):
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated, IsVerifiedUser])
 def like_post(request, post_id):
-
     """
     Love a post.
-    
+
     Provide the post_id to love a post.
 
     Returns:
@@ -133,7 +132,7 @@ def like_post(request, post_id):
         post = Post.objects.get(pk=post_id)
     except Post.DoesNotExist:
         return Response({'message': 'Post not found.'}, status=status.HTTP_404_NOT_FOUND)
-    
+
     user = request.user
     try:
         like, created = Like.objects.get_or_create(user=user, post=post)
@@ -143,7 +142,9 @@ def like_post(request, post_id):
         return Response({'message': 'Post loved successfully.'}, status=status.HTTP_201_CREATED)
     return Response({'message': 'You already loved this post.'}, status=status.HTTP_400_BAD_REQUEST)
 
-#create an unlike view
+# create an unlike view
+
+
 @swagger_auto_schema(
     method='POST',
     manual_parameters=[
@@ -162,7 +163,7 @@ def like_post(request, post_id):
 def unlike_post(request, post_id):
     """
     Unlove a post.
-    
+
     Provide the post_id to unlove a post.
 
     Returns:
@@ -172,14 +173,13 @@ def unlike_post(request, post_id):
         post = Post.objects.get(pk=post_id)
     except Post.DoesNotExist:
         return Response({'message': 'Post not found.'}, status=status.HTTP_404_NOT_FOUND)
-    
+
     user = request.user
     try:
         Like.objects.get(user=user, post=post).delete()
     except Like.DoesNotExist:
         return Response({'message': 'You have not loved this post.'}, status=status.HTTP_400_BAD_REQUEST)
     return Response({'message': 'Post unloved successfully.'}, status=status.HTTP_200_OK)
-
 
 
 @swagger_auto_schema(
@@ -200,6 +200,7 @@ def unlike_post(request, post_id):
 def get_likes_count_of_post(request, post_id):
     likes_count = Like.objects.filter(post__id=post_id).count()
     return Response({"likes_count": likes_count}, status=status.HTTP_200_OK)
+
 
 @swagger_auto_schema(
     method='POST',
@@ -248,7 +249,7 @@ def comment_post(request, post_id):
 def get_comment_count_for_post(request, post_id):
     """
     Get comment count for a post.
-    
+
     Provide the post_id to retrieve the comment count for a post.
 
     Returns:
@@ -276,7 +277,7 @@ def get_comment_count_for_post(request, post_id):
 def get_total_likes_for_user(request):
     """
     Get total number of likes for the user.
-    
+
     Returns:
         Response: The total number of likes for the user.
     """
@@ -302,12 +303,13 @@ def get_total_likes_for_user(request):
 def get_total_comments_for_user(request):
     """
     Get total number of comments for the user.
-    
+
     Returns:
         Response: The total number of comments for the user.
     """
     total_comments = Comment.objects.filter(user=request.user).count()
     return Response({'total_comments': total_comments}, status=status.HTTP_200_OK)
+
 
 @swagger_auto_schema(
     method='post',
@@ -330,16 +332,16 @@ def create_post(request):
     title = request.data.get('title')
     image_or_fbx = request.FILES.get('image_or_fbx')
     user_id = request.user.id
-    
+
     if not title:
         return Response({'message': 'Title is required.'}, status=status.HTTP_400_BAD_REQUEST)
 
     post_data = {'title': title, 'user': user_id}  # Include image_or_fbx field
     serializer = PostSerializer(data=post_data)
-    
+
     if serializer.is_valid():
         serializer.save()
-        
+
         if image_or_fbx:
             # Generate a unique filename using UUID
             new_filename = f"{uuid.uuid4()}{os.path.splitext(image_or_fbx.name)[-1]}"
@@ -350,7 +352,8 @@ def create_post(request):
             # Upload the image to Firebase Storage
             bucket = storage_client.bucket(fire_base_url)
             blob = bucket.blob(f"posts_images/{new_filename}")
-            blob.upload_from_string(image_or_fbx.read(), content_type=image_or_fbx.content_type)
+            blob.upload_from_string(
+                image_or_fbx.read(), content_type=image_or_fbx.content_type)
 
             # Get the Direct Google Cloud Storage URL
             direct_url = blob.generate_signed_url(
@@ -361,11 +364,11 @@ def create_post(request):
             print(direct_url)
             direct_url = direct_url
             if direct_url:
-                 # Update the post with the image URL
-                 post = serializer.instance
-                 post.image_or_fbx = direct_url
-                 post.save()
-        
+                # Update the post with the image URL
+                post = serializer.instance
+                post.image_or_fbx = direct_url
+                post.save()
+
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -391,32 +394,29 @@ def list_all_posts(request):
     Response: Paginated list of posts.
     """
     paginator = CustomPagination()
-    posts = Post.objects.all()
-    
-    # Create a list to store modified post data
-    modified_posts = []
+    posts = Post.objects.annotate(
+        likes_count=Count('like'),
+        comments_count=Count('comment'),
+        followers_count=Subquery(
+            Inspiration.objects.filter(
+                followed=OuterRef('user')
+            ).values('followed').annotate(
+                count=Count('follower')
+            ).values('count')[:1]
+        )
+    ).order_by('-created_at')
+    context = paginator.paginate_queryset(posts, request)
+    posts_data = []
+    for post in context:
+        post_serializer = PostSerializer(post, context={'user': request.user}).data
+        post_serializer['likes_count'] = post.likes_count
+        post_serializer['comments_count'] = post.comments_count
+        # handle None case
+        post_serializer['followers_count'] = post.followers_count or 0
+        posts_data.append(post_serializer)
 
-    # Iterate through posts and modify data
-    for post in posts:
-        modified_post = {
-            'id': post.id,
-            'title': post.title,
-            'created_at': post.created_at.date(),
-            'image_or_fbx': f"{fire_base_url}/{post.image_or_fbx}" if post.image_or_fbx else None,
-        }
+    return paginator.get_paginated_response(posts_data)
 
-        # Fetch user data
-        post_user = get_user_model().objects.get(pk=post.user.id)
-        modified_post['user'] = {
-            'id': post_user.id,
-            'username': post_user.username,
-            'profile_picture': post_user.profile_picture,
-        }
-
-        modified_posts.append(modified_post)
-
-    paginated_posts = paginator.paginate_queryset(modified_posts, request)
-    return paginator.get_paginated_response(paginated_posts)
 
 class CustomPagination(PageNumberPagination):
     page_size = 10  # Adjust the page size as needed
