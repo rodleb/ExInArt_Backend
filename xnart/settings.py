@@ -55,24 +55,29 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
     'users_api',
-    'corsheaders',
     'user_network_api',
     'drf_yasg',
 
 ]
 
-ALLOWED_HOSTS = [
-                    'localhost',
+ALLOWED_HOSTS = [ '*',
+                'localhost',
                 '192.168.0.2',
                  '127.0.0.1',
                  "exinart.azurewebsites.net",
                  ]
 
+# allow all origins
+CORS_ORIGIN_ALLOW_ALL = True
+
 CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:3000',
     'http://localhost:8000',
     'http://localhost:3000',
     "https://exinart.azurewebsites.net",
@@ -81,17 +86,17 @@ CORS_ALLOWED_ORIGINS = [
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # Moved up
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'django.middleware.common.CommonMiddleware',  # Keep this after CorsMiddleware
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
-
 ]
+
 
 
 ROOT_URLCONF = 'xnart.urls'
