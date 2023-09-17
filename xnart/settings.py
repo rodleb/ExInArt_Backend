@@ -66,12 +66,12 @@ INSTALLED_APPS = [
 
 ]
 
-# ALLOWED_HOSTS = [ '*',
-#                 'localhost',
-#                 '192.168.0.2',
-#                  '127.0.0.1',
-#                  "exinart.azurewebsites.net",
-#                  ]
+ALLOWED_HOSTS = [ '*',
+                'localhost',
+                '192.168.0.2',
+                 '127.0.0.1',
+                 "exinart.azurewebsites.net",
+                 ]
 
 # # allow all origins
 CORS_ORIGIN_ALLOW_ALL = True
