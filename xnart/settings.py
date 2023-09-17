@@ -32,8 +32,9 @@ fire_base_url = 'exinart-13556.appspot.com'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
@@ -49,13 +50,13 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',  # Moved up
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt.token_blacklist',
@@ -65,14 +66,14 @@ INSTALLED_APPS = [
 
 ]
 
-ALLOWED_HOSTS = [ '*',
-                'localhost',
-                '192.168.0.2',
-                 '127.0.0.1',
-                 "exinart.azurewebsites.net",
-                 ]
+# ALLOWED_HOSTS = [ '*',
+#                 'localhost',
+#                 '192.168.0.2',
+#                  '127.0.0.1',
+#                  "exinart.azurewebsites.net",
+#                  ]
 
-# allow all origins
+# # allow all origins
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOWED_ORIGINS = [
@@ -255,4 +256,15 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
     'USER_ID': 'id',
     'ALWAYS_ALLOW_REFRESH': False,
+}
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'bundles/',  # must end with a slash
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+    }
 }
