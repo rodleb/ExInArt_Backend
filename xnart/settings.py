@@ -22,8 +22,8 @@ import os
 
 
 # FireBase Server
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "exinart-13556-924783e499ba.json"
-cred = credentials.Certificate("exinart-13556-924783e499ba.json")
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'exinart-13556-924783e499ba.json'
+cred = credentials.Certificate('exinart-13556-924783e499ba.json')
 firebase_admin.initialize_app(
     cred, {'storageBucket': 'gs://exinart-13556.appspot.com'})
 fire_base_url = 'exinart-13556.appspot.com'
@@ -66,11 +66,10 @@ INSTALLED_APPS = [
 
 ]
 
-ALLOWED_HOSTS = [ '*',
+ALLOWED_HOSTS = ['exinart.azurewebsites.net', 
                 'localhost',
                 '192.168.0.2',
                  '127.0.0.1',
-                 "exinart.azurewebsites.net",
                  ]
 
 # # allow all origins
@@ -81,8 +80,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'http://localhost:8000',
     'http://localhost:3000',
-    "https://exinart.azurewebsites.net",
-    "http://exinart.azurewebsites.net",
+    'https://exinart.azurewebsites.net',
+    'http://exinart.azurewebsites.net',
 ]
 
 
@@ -95,7 +94,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 
