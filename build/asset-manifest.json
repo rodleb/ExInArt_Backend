@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.10b977fc.css",
+    "main.js": "/static/js/main.2c7fe3c4.js",
+    "static/media/scene1.glb": "/static/media/scene1.ea0776ee589e61431948.glb",
+    "static/media/index-image-2.png": "/static/media/index-image-2.106460960572e23e16ea.png",
+    "static/media/background_image.png": "/static/media/background_image.b17fd357214acd6bb437.png",
+    "static/media/sign-up.png": "/static/media/sign-up.91040c278ce2c3955549.png",
+    "static/media/index-image-1.png": "/static/media/index-image-1.4d8a7bd385e210edc1df.png",
+    "static/media/logo.png": "/static/media/logo.54272d40fb751e930537.png",
+    "static/media/scene-1.png": "/static/media/scene-1.7ccf7a301220061202cf.png",
+    "static/media/loader.png": "/static/media/loader.a48f05633c26d075567f.png",
+    "static/media/log-in.png": "/static/media/log-in.5aa87b60e0de3d5db01f.png",
+    "static/media/scene-2.png": "/static/media/scene-2.fc874c15498a8cce00af.png",
+    "static/media/scene-3.png": "/static/media/scene-3.e43f2decd585473151fd.png",
+    "static/media/scene-5.png": "/static/media/scene-5.601ca589b65a176f2b9d.png",
+    "static/media/scene-4.png": "/static/media/scene-4.a66aa96a7fd31c3a6eaa.png",
+    "static/media/rayan-choucair.jpg": "/static/media/rayan-choucair.7df48c49a14a066f0519.jpg",
+    "static/media/rodolph-biainau.jpg": "/static/media/rodolph-biainau.86f452a11032f6b01a45.jpg",
+    "static/media/ar-gallery-image-2.jpeg": "/static/media/ar-gallery-image-2.f7c3966e11f4e29baa11.jpeg",
+    "static/media/jumana-badr.jpg": "/static/media/jumana-badr.0b1048a36f323992e478.jpg",
+    "static/media/ar-gallery-image-1.jpeg": "/static/media/ar-gallery-image-1.f9b8f62a93413b6ecf4a.jpeg",
+    "index.html": "/index.html",
+    "main.10b977fc.css.map": "/static/css/main.10b977fc.css.map",
+    "main.2c7fe3c4.js.map": "/static/js/main.2c7fe3c4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.10b977fc.css",
+    "static/js/main.2c7fe3c4.js"
+  ]
+}

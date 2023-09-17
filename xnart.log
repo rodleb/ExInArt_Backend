@@ -374,3 +374,381 @@ Traceback (most recent call last):
     raise ImproperlyConfigured(
 django.core.exceptions.ImproperlyConfigured: Field name `profile_pic` is not valid for model `CustomUser`.
 "GET /api/network/posts_list/ HTTP/1.1" 500 23074
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 85148
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 84080
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET /favicon.ico HTTP/1.1" 500 84928
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 85150
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 84068
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET /favicon.ico HTTP/1.1" 500 84916
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 85150
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 84068
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET /favicon.ico HTTP/1.1" 500 84916
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 85150
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 84068
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET /favicon.ico HTTP/1.1" 500 84916
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 85150
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 84068
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET /favicon.ico HTTP/1.1" 500 84916
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 85150
+Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET / HTTP/1.1" 500 84068
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\xnart_backend\django_env\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET /favicon.ico HTTP/1.1" 500 84916

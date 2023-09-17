@@ -27,10 +27,6 @@ from django.views.generic import TemplateView
 from django.urls import re_path
 
 
-
-
-
-
 from drf_yasg import openapi
 schema_view = get_schema_view(
     openapi.Info(
@@ -43,21 +39,25 @@ schema_view = get_schema_view(
 
     ),
     public=True,
-    permission_classes=[AllowAny] 
-    
+    permission_classes=[AllowAny]
+
 )
 
 urlpatterns = [
     path('api/admin/', admin.site.urls),
-    path('api/user/', include('users_api.urls')),  # Include your users_api app's URLs
-    path('api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('api/network/', include('user_network_api.urls')),  # Include your user_network_api app's URLs
-    #JWT token refresh and shit
+    # Include your users_api app's URLs
+    path('api/user/', include('users_api.urls')),
+    path('api/swagger/', schema_view.with_ui('swagger',
+         cache_timeout=0), name='schema-swagger-ui'),
+    # Include your user_network_api app's URLs
+    path('api/network/', include('user_network_api.urls')),
+    # JWT token refresh and shit
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
+    re_path(r'^(?!api/).*$', TemplateView.as_view(template_name='index.html')),
 
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
