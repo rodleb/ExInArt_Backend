@@ -18,8 +18,6 @@ from datetime import timedelta
 
 import firebase_admin
 from firebase_admin import credentials
-import os
-
 
 # FireBase Server
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'exinart-13556-924783e499ba.json'
@@ -32,11 +30,11 @@ fire_base_url = 'exinart-13556.appspot.com'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+##STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 

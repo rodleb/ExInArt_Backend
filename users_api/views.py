@@ -106,6 +106,10 @@ def register_user(request):
                 'user_id': user_id,
                 'username': username,
             }
+            # After making the POST request
+            print(status.HTTP_201_CREATED)
+            print(response_data)
+
             return Response(response_data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
